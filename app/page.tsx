@@ -1,65 +1,35 @@
 'use client';
 
-import { useEffect, useRef, useCallback, useState } from 'react';
-import { COVERS, PAIRS, LISTS, TASTE_TOP_5 } from '@/lib/data';
+import { useEffect, useCallback, useState } from 'react';
+import { PAIRS, LISTS, TASTE_TOP_5 } from '@/lib/data';
 
-const COVER_W = 118;
-const COVER_H = 177;
-const GAP = 16;
-const CELL_W = COVER_W + GAP;
-const CELL_H = COVER_H + GAP;
+const VS_PAIRS = [
+  {
+    left:  { type: 'FILM',  title: 'Blade Runner 2049', year: '2017', grad: 'linear-gradient(160deg,#1a0a2e,#3d1f5e,#6b3fa0)', elo: 1776 },
+    right: { type: 'GAME',  title: 'Elden Ring',         year: '2022', grad: 'linear-gradient(160deg,#1a0f00,#3d2200,#7a4400)', elo: 1820 },
+  },
+  {
+    left:  { type: 'TV',    title: 'Succession',         year: '2018', grad: 'linear-gradient(160deg,#141414,#2a2a2a,#3a3a3a)', elo: 1699 },
+    right: { type: 'FILM',  title: 'Parasite',           year: '2019', grad: 'linear-gradient(160deg,#181818,#2a2a2a,#3d3d3d)', elo: 1692 },
+  },
+  {
+    left:  { type: 'GAME',  title: 'The Last of Us',     year: '2013', grad: 'linear-gradient(160deg,#0d1a0a,#1e3d14,#305a20)', elo: 1715 },
+    right: { type: 'TV',    title: 'Breaking Bad',       year: '2008', grad: 'linear-gradient(160deg,#1a2800,#3d5e00,#5a8800)',  elo: 1743 },
+  },
+];
 
 export default function LandingPage() {
-  const collageRef = useRef<HTMLDivElement>(null);
   const [matchIndex, setMatchIndex] = useState(0);
   const [picking, setPicking] = useState(false);
   const [winnerSide, setWinnerSide] = useState<'left' | 'right' | null>(null);
   const [loserSide, setLoserSide] = useState<'left' | 'right' | null>(null);
-
-  const buildCollage = useCallback(() => {
-    const collage = collageRef.current;
-    if (!collage) return;
-    collage.innerHTML = '';
-
-    const W = window.innerWidth * 1.14;
-    const H = window.innerHeight * 1.18;
-    const cols = Math.ceil(W / CELL_W) + 1;
-    const rows = Math.ceil(H / CELL_H) + 1;
-
-    const shuffled = [...COVERS].sort(() => Math.random() - 0.5);
-    let idx = 0;
-
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const media = shuffled[idx % shuffled.length];
-        idx++;
-        const stagger = (r % 2) * (CELL_W * 0.5);
-        const x = c * CELL_W + stagger - COVER_W * 0.1;
-        const y = r * CELL_H - COVER_H * 0.1;
-        const stripeColor = media.grad.match(/#[a-f0-9]{6}/gi)?.[2] ?? 'rgba(255,255,255,0.3)';
-
-        const div = document.createElement('div');
-        div.className = 'cover';
-        div.style.cssText = `width:${COVER_W}px;height:${COVER_H}px;left:${x}px;top:${y}px;background:${media.grad};`;
-        div.innerHTML = `
-          <div class="cover-shine"></div>
-          <div class="cover-stripe" style="background:${stripeColor}"></div>
-          <div class="cover-body">
-            <div class="cover-type">${media.type}</div>
-            <div class="cover-title">${media.title}</div>
-            <div class="cover-year">${media.year}</div>
-          </div>
-        `;
-        collage.appendChild(div);
-      }
-    }
-  }, []);
+  const [vsPairIndex, setVsPairIndex] = useState(0);
 
   useEffect(() => {
-    buildCollage();
-  }, [buildCollage]);
+    const id = setInterval(() => setVsPairIndex(i => (i + 1) % VS_PAIRS.length), 4000);
+    return () => clearInterval(id);
+  }, []);
 
-  // Scroll fade-in animations
   useEffect(() => {
     const els = document.querySelectorAll('.fade-up');
     const obs = new IntersectionObserver(
@@ -81,7 +51,6 @@ export default function LandingPage() {
     setPicking(true);
     setWinnerSide(side);
     setLoserSide(side === 'left' ? 'right' : 'left');
-
     setTimeout(() => {
       setMatchIndex(i => (i + 1) % PAIRS.length);
       setWinnerSide(null);
@@ -102,6 +71,8 @@ export default function LandingPage() {
     loserSide === 'right' ? 'loser' : '',
   ].filter(Boolean).join(' ');
 
+  const vp = VS_PAIRS[vsPairIndex];
+
   return (
     <>
       {/* NAV */}
@@ -121,8 +92,31 @@ export default function LandingPage() {
 
       {/* HERO */}
       <section id="hero">
-        <div className="collage" ref={collageRef} />
+        {/* Floating VS cards background */}
+        <div className="vs-bg" aria-hidden="true">
+          <div className="vs-bg-card vs-bg-card-left" style={{ background: vp.left.grad }}>
+            <div className="vs-bg-card-overlay" />
+            <div className="vs-bg-card-body">
+              <div className="vs-bg-type">{vp.left.type} · {vp.left.year}</div>
+              <div className="vs-bg-title">{vp.left.title}</div>
+              <div className="vs-bg-elo">{vp.left.elo}</div>
+            </div>
+          </div>
+
+          <div className="vs-bg-divider" aria-hidden="true">VS</div>
+
+          <div className="vs-bg-card vs-bg-card-right" style={{ background: vp.right.grad }}>
+            <div className="vs-bg-card-overlay" />
+            <div className="vs-bg-card-body">
+              <div className="vs-bg-type">{vp.right.type} · {vp.right.year}</div>
+              <div className="vs-bg-title">{vp.right.title}</div>
+              <div className="vs-bg-elo">{vp.right.elo}</div>
+            </div>
+          </div>
+        </div>
+
         <div className="hero-overlay" />
+
         <div className="hero-content">
           <p className="hero-eyebrow">· A head-to-head ranking engine ·</p>
           <h1 className="hero-headline">
@@ -140,6 +134,7 @@ export default function LandingPage() {
             <a href="#taste" className="btn-secondary">See a sample profile</a>
           </div>
         </div>
+
         <div className="cat-strip">
           <span className="cat-item">Movies</span><span className="cat-dot">·</span>
           <span className="cat-item">TV</span><span className="cat-dot">·</span>
@@ -223,9 +218,7 @@ export default function LandingPage() {
         <p className="section-eyebrow fade-up">Your profile</p>
         <h2 className="section-headline fade-up">Share your taste. <span className="gold">Compare with friends.</span></h2>
         <p className="section-sub fade-up">Your rankings become a profile. Share lists, discover taste twins, and see how you stack up.</p>
-
         <div className="social-layout fade-up">
-          {/* Profile card */}
           <div className="social-profile-card">
             <div className="profile-top">
               <div className="profile-avatar">A</div>
@@ -249,10 +242,7 @@ export default function LandingPage() {
             </div>
             <button className="profile-share-btn">Share my profile ↗</button>
           </div>
-
-          {/* Right column */}
           <div className="social-right">
-            {/* Compare widget */}
             <div className="compare-card">
               <div className="compare-header">
                 <span className="compare-title">Compare taste</span>
@@ -272,8 +262,6 @@ export default function LandingPage() {
               <div className="compare-diff">You both love <em>psychological thrillers</em> but disagree on sci-fi.</div>
               <button className="compare-btn">Find your taste twin →</button>
             </div>
-
-            {/* Activity feed */}
             <div className="activity-feed">
               <div className="activity-feed-label">Friends&apos; activity</div>
               {[
@@ -293,7 +281,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* TASTE PROFILE — anchor target for hero CTA */}
+      {/* TASTE PROFILE */}
       <section id="taste" className="section">
         <p className="section-eyebrow fade-up">The payoff</p>
         <h2 className="section-headline fade-up">Your taste, <span className="gold">explained.</span></h2>
