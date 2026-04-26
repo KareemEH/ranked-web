@@ -67,100 +67,75 @@ nav {
 
 /* ── HERO ── */
 #hero {
-  position: relative; min-height: 100vh;
+  position: relative; min-height: 100svh;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   overflow: hidden; background: var(--bg);
-}
-/* ── VS BACKGROUND ── */
-.vs-bg {
-  position: absolute; inset: 0; z-index: 0;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5vw; pointer-events: none;
-}
-@media (max-width: 600px) { .vs-bg { display: none; } }
-
-.vs-bg-card {
-  width: clamp(180px, 20vw, 300px);
-  height: clamp(280px, 52vh, 460px);
-  border-radius: 18px; overflow: hidden;
-  position: relative; flex-shrink: 0;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
-  transition: background 1.2s ease;
-}
-.vs-bg-card-left {
-  transform: rotate(-8deg) translateY(-24px);
-  animation: vs-float-l 7s ease-in-out infinite;
-}
-.vs-bg-card-right {
-  transform: rotate(8deg) translateY(24px);
-  animation: vs-float-r 7s ease-in-out infinite;
-}
-@keyframes vs-float-l {
-  0%,100% { transform: rotate(-8deg) translateY(-24px); }
-  50%      { transform: rotate(-5deg) translateY(-42px); }
-}
-@keyframes vs-float-r {
-  0%,100% { transform: rotate(8deg) translateY(24px); }
-  50%      { transform: rotate(5deg) translateY(8px); }
+  gap: 0;
 }
 
-.vs-bg-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
-}
-.vs-bg-card-body {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 20px 18px; z-index: 1;
-}
-.vs-bg-type {
-  font-size: 9px; font-weight: 600; letter-spacing: 0.2em;
-  text-transform: uppercase; color: rgba(244,237,224,0.5);
-  margin-bottom: 6px;
-}
-.vs-bg-title {
-  font-family: var(--font-display);
-  font-size: clamp(16px, 1.6vw, 22px);
-  font-weight: 400; line-height: 1.15;
-  color: rgba(244,237,224,0.9);
-  margin-bottom: 8px;
-}
-.vs-bg-elo {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-  color: rgba(240,193,50,0.7);
-}
-
-.vs-bg-divider {
-  font-family: var(--font-display);
-  font-size: clamp(60px, 10vw, 140px);
-  font-weight: 400; letter-spacing: -0.02em;
-  color: rgba(240,193,50,0.07);
-  user-select: none; flex-shrink: 0;
-  text-shadow: 0 0 80px rgba(240,193,50,0.12);
-}
-
-.hero-overlay {
-  position: absolute; inset: 0; z-index: 1;
-  background:
-    radial-gradient(ellipse 55% 70% at 50% 50%,
-      rgba(12,12,11,0.92) 20%,
-      rgba(12,12,11,0.7)  55%,
-      rgba(12,12,11,0.15) 85%,
-      transparent 100%);
-}
-.hero-overlay::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(12,12,11,0.65) 0%,
-    transparent 20%,
-    transparent 80%,
-    rgba(12,12,11,0.65) 100%);
-}
-
+/* ── FILMSTRIP ── */
 .hero-content {
   position: relative; z-index: 2;
-  text-align: center; padding: 80px 20px 32px;
-  max-width: 860px;
+  text-align: center; padding: 120px 20px 20px;
+  max-width: 860px; flex-shrink: 0;
+}
+
+.filmstrip {
+  width: 100%; display: flex; flex-direction: column;
+  gap: 8px; padding: 4px 0; position: relative; z-index: 2;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.fs-row { overflow: hidden; width: 100%; }
+
+.fs-track {
+  display: flex; gap: 8px; width: max-content;
+}
+.fs-left  { animation: fs-scroll-l 32s linear infinite; }
+.fs-right { animation: fs-scroll-r 28s linear infinite; }
+
+@keyframes fs-scroll-l {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes fs-scroll-r {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.fs-card {
+  width: clamp(80px, 11vw, 140px);
+  height: clamp(110px, 15vw, 190px);
+  border-radius: 10px; overflow: hidden;
+  position: relative; flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+.fs-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+}
+.fs-card-body {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: clamp(6px, 1vw, 10px); z-index: 1;
+}
+.fs-type {
+  font-size: 7px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(244,237,224,0.4);
+  margin-bottom: 2px;
+}
+.fs-title {
+  font-family: var(--font-display);
+  font-size: clamp(9px, 1vw, 13px);
+  font-weight: 400; line-height: 1.2;
+  color: rgba(244,237,224,0.85);
+}
+
+.hero-bottom {
+  position: relative; z-index: 2;
+  text-align: center; padding: 20px 20px 44px;
+  max-width: 600px; flex-shrink: 0;
 }
 .hero-eyebrow {
   font-family: var(--font-ui); font-size: 12px; font-weight: 300;

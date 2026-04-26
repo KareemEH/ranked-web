@@ -3,19 +3,28 @@
 import { useEffect, useCallback, useState } from 'react';
 import { PAIRS, LISTS, TASTE_TOP_5 } from '@/lib/data';
 
-const VS_PAIRS = [
-  {
-    left:  { type: 'FILM',  title: 'Blade Runner 2049', year: '2017', grad: 'linear-gradient(160deg,#1a0a2e,#3d1f5e,#6b3fa0)', elo: 1776 },
-    right: { type: 'GAME',  title: 'Elden Ring',         year: '2022', grad: 'linear-gradient(160deg,#1a0f00,#3d2200,#7a4400)', elo: 1820 },
-  },
-  {
-    left:  { type: 'TV',    title: 'Succession',         year: '2018', grad: 'linear-gradient(160deg,#141414,#2a2a2a,#3a3a3a)', elo: 1699 },
-    right: { type: 'FILM',  title: 'Parasite',           year: '2019', grad: 'linear-gradient(160deg,#181818,#2a2a2a,#3d3d3d)', elo: 1692 },
-  },
-  {
-    left:  { type: 'GAME',  title: 'The Last of Us',     year: '2013', grad: 'linear-gradient(160deg,#0d1a0a,#1e3d14,#305a20)', elo: 1715 },
-    right: { type: 'TV',    title: 'Breaking Bad',       year: '2008', grad: 'linear-gradient(160deg,#1a2800,#3d5e00,#5a8800)',  elo: 1743 },
-  },
+const FS_ROW_A = [
+  { type: 'FILM', title: 'Blade Runner 2049', grad: 'linear-gradient(160deg,#1a0a2e,#3d1f5e,#6b3fa0)' },
+  { type: 'GAME', title: 'Elden Ring',        grad: 'linear-gradient(160deg,#1a0f00,#3d2200,#7a4400)' },
+  { type: 'TV',   title: 'The Sopranos',      grad: 'linear-gradient(160deg,#1a0808,#350f0f,#500808)' },
+  { type: 'FILM', title: 'Interstellar',      grad: 'linear-gradient(160deg,#0a0a1a,#1a1a3e,#101050)' },
+  { type: 'GAME', title: 'God of War',        grad: 'linear-gradient(160deg,#1a0000,#4a0808,#7a1010)' },
+  { type: 'TV',   title: 'Chernobyl',         grad: 'linear-gradient(160deg,#1a1a0a,#2d2d1a,#404030)' },
+  { type: 'FILM', title: 'Dune',              grad: 'linear-gradient(160deg,#2a1800,#5e3800,#8a5500)' },
+  { type: 'GAME', title: 'Hollow Knight',     grad: 'linear-gradient(160deg,#08080a,#141428,#1e1e40)' },
+  { type: 'TV',   title: 'Severance',         grad: 'linear-gradient(160deg,#0a1a14,#1a3828,#205040)' },
+];
+
+const FS_ROW_B = [
+  { type: 'FILM', title: 'The Dark Knight',   grad: 'linear-gradient(160deg,#0d0d0d,#1a1a2e,#2e3060)' },
+  { type: 'TV',   title: 'Breaking Bad',      grad: 'linear-gradient(160deg,#1a2800,#3d5e00,#5a8800)' },
+  { type: 'GAME', title: 'The Last of Us',    grad: 'linear-gradient(160deg,#0d1a0a,#1e3d14,#305a20)' },
+  { type: 'FILM', title: 'Parasite',          grad: 'linear-gradient(160deg,#181818,#2a2a2a,#3d3d3d)' },
+  { type: 'TV',   title: 'Succession',        grad: 'linear-gradient(160deg,#141414,#2a2a2a,#3a3a3a)' },
+  { type: 'GAME', title: 'Disco Elysium',     grad: 'linear-gradient(160deg,#0a0a20,#1a1a50,#2a2a80)' },
+  { type: 'FILM', title: 'Moonlight',         grad: 'linear-gradient(160deg,#1a0a3e,#3d1f7a,#5a30a0)' },
+  { type: 'TV',   title: 'True Detective',    grad: 'linear-gradient(160deg,#0a0a0a,#1a1a14,#2a2818)' },
+  { type: 'GAME', title: 'Hades',             grad: 'linear-gradient(160deg,#2a0a1a,#5e1a3e,#8a2060)' },
 ];
 
 export default function LandingPage() {
@@ -23,12 +32,6 @@ export default function LandingPage() {
   const [picking, setPicking] = useState(false);
   const [winnerSide, setWinnerSide] = useState<'left' | 'right' | null>(null);
   const [loserSide, setLoserSide] = useState<'left' | 'right' | null>(null);
-  const [vsPairIndex, setVsPairIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => setVsPairIndex(i => (i + 1) % VS_PAIRS.length), 4000);
-    return () => clearInterval(id);
-  }, []);
 
   useEffect(() => {
     const els = document.querySelectorAll('.fade-up');
@@ -71,8 +74,6 @@ export default function LandingPage() {
     loserSide === 'right' ? 'loser' : '',
   ].filter(Boolean).join(' ');
 
-  const vp = VS_PAIRS[vsPairIndex];
-
   return (
     <>
       {/* NAV */}
@@ -92,31 +93,6 @@ export default function LandingPage() {
 
       {/* HERO */}
       <section id="hero">
-        {/* Floating VS cards background */}
-        <div className="vs-bg" aria-hidden="true">
-          <div className="vs-bg-card vs-bg-card-left" style={{ background: vp.left.grad }}>
-            <div className="vs-bg-card-overlay" />
-            <div className="vs-bg-card-body">
-              <div className="vs-bg-type">{vp.left.type} · {vp.left.year}</div>
-              <div className="vs-bg-title">{vp.left.title}</div>
-              <div className="vs-bg-elo">{vp.left.elo}</div>
-            </div>
-          </div>
-
-          <div className="vs-bg-divider" aria-hidden="true">VS</div>
-
-          <div className="vs-bg-card vs-bg-card-right" style={{ background: vp.right.grad }}>
-            <div className="vs-bg-card-overlay" />
-            <div className="vs-bg-card-body">
-              <div className="vs-bg-type">{vp.right.type} · {vp.right.year}</div>
-              <div className="vs-bg-title">{vp.right.title}</div>
-              <div className="vs-bg-elo">{vp.right.elo}</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="hero-overlay" />
-
         <div className="hero-content">
           <p className="hero-eyebrow">· A head-to-head ranking engine ·</p>
           <h1 className="hero-headline">
@@ -125,6 +101,39 @@ export default function LandingPage() {
             <span className="italic-gold">Every game</span>
             you&apos;ve loved.
           </h1>
+        </div>
+
+        {/* Filmstrip rows */}
+        <div className="filmstrip" aria-hidden="true">
+          <div className="fs-row">
+            <div className="fs-track fs-left">
+              {[...FS_ROW_A, ...FS_ROW_A].map((item, i) => (
+                <div className="fs-card" key={i} style={{ background: item.grad }}>
+                  <div className="fs-card-overlay" />
+                  <div className="fs-card-body">
+                    <div className="fs-type">{item.type}</div>
+                    <div className="fs-title">{item.title}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="fs-row">
+            <div className="fs-track fs-right">
+              {[...FS_ROW_B, ...FS_ROW_B].map((item, i) => (
+                <div className="fs-card" key={i} style={{ background: item.grad }}>
+                  <div className="fs-card-overlay" />
+                  <div className="fs-card-body">
+                    <div className="fs-type">{item.type}</div>
+                    <div className="fs-title">{item.title}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-bottom">
           <p className="hero-sub">
             Ranked builds your definitive list through thousands of tiny, honest choices.
             Then Claude reads it back to you — and tells you something about yourself you didn&apos;t know.
