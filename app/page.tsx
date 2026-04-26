@@ -3,29 +3,10 @@
 import { useEffect, useCallback, useState } from 'react';
 import { PAIRS, LISTS, TASTE_TOP_5 } from '@/lib/data';
 
-const FS_ROW_A = [
-  { type: 'FILM', title: 'Blade Runner 2049', grad: 'linear-gradient(160deg,#1a0a2e,#3d1f5e,#6b3fa0)' },
-  { type: 'GAME', title: 'Elden Ring',        grad: 'linear-gradient(160deg,#1a0f00,#3d2200,#7a4400)' },
-  { type: 'TV',   title: 'The Sopranos',      grad: 'linear-gradient(160deg,#1a0808,#350f0f,#500808)' },
-  { type: 'FILM', title: 'Interstellar',      grad: 'linear-gradient(160deg,#0a0a1a,#1a1a3e,#101050)' },
-  { type: 'GAME', title: 'God of War',        grad: 'linear-gradient(160deg,#1a0000,#4a0808,#7a1010)' },
-  { type: 'TV',   title: 'Chernobyl',         grad: 'linear-gradient(160deg,#1a1a0a,#2d2d1a,#404030)' },
-  { type: 'FILM', title: 'Dune',              grad: 'linear-gradient(160deg,#2a1800,#5e3800,#8a5500)' },
-  { type: 'GAME', title: 'Hollow Knight',     grad: 'linear-gradient(160deg,#08080a,#141428,#1e1e40)' },
-  { type: 'TV',   title: 'Severance',         grad: 'linear-gradient(160deg,#0a1a14,#1a3828,#205040)' },
-];
+const FS_ROW_A = [10, 24, 37, 52, 65, 78, 91, 104, 118];
+const FS_ROW_B = [130, 145, 158, 172, 186, 200, 213, 227, 240];
+const FS_ROW_C = [255, 268, 282, 295, 310, 324, 337, 351, 365];
 
-const FS_ROW_B = [
-  { type: 'FILM', title: 'The Dark Knight',   grad: 'linear-gradient(160deg,#0d0d0d,#1a1a2e,#2e3060)' },
-  { type: 'TV',   title: 'Breaking Bad',      grad: 'linear-gradient(160deg,#1a2800,#3d5e00,#5a8800)' },
-  { type: 'GAME', title: 'The Last of Us',    grad: 'linear-gradient(160deg,#0d1a0a,#1e3d14,#305a20)' },
-  { type: 'FILM', title: 'Parasite',          grad: 'linear-gradient(160deg,#181818,#2a2a2a,#3d3d3d)' },
-  { type: 'TV',   title: 'Succession',        grad: 'linear-gradient(160deg,#141414,#2a2a2a,#3a3a3a)' },
-  { type: 'GAME', title: 'Disco Elysium',     grad: 'linear-gradient(160deg,#0a0a20,#1a1a50,#2a2a80)' },
-  { type: 'FILM', title: 'Moonlight',         grad: 'linear-gradient(160deg,#1a0a3e,#3d1f7a,#5a30a0)' },
-  { type: 'TV',   title: 'True Detective',    grad: 'linear-gradient(160deg,#0a0a0a,#1a1a14,#2a2818)' },
-  { type: 'GAME', title: 'Hades',             grad: 'linear-gradient(160deg,#2a0a1a,#5e1a3e,#8a2060)' },
-];
 
 export default function LandingPage() {
   const [matchIndex, setMatchIndex] = useState(0);
@@ -103,34 +84,25 @@ export default function LandingPage() {
           </h1>
         </div>
 
-        {/* Filmstrip rows */}
+        {/* Filmstrip background */}
         <div className="filmstrip" aria-hidden="true">
-          <div className="fs-row">
-            <div className="fs-track fs-left">
-              {[...FS_ROW_A, ...FS_ROW_A].map((item, i) => (
-                <div className="fs-card" key={i} style={{ background: item.grad }}>
-                  <div className="fs-card-overlay" />
-                  <div className="fs-card-body">
-                    <div className="fs-type">{item.type}</div>
-                    <div className="fs-title">{item.title}</div>
+          {([
+            [FS_ROW_A, 'fs-left'],
+            [FS_ROW_B, 'fs-right fs-mid'],
+            [FS_ROW_C, 'fs-left fs-slow'],
+            [FS_ROW_A, 'fs-right'],
+          ] as [number[], string][]).map(([row, dir], ri) => (
+            <div className="fs-row" key={ri}>
+              <div className={`fs-track ${dir}`}>
+                {[...row, ...row, ...row, ...row].map((id, i) => (
+                  <div className="fs-card" key={i}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={`https://picsum.photos/seed/${id}/300/450`} alt="" />
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="fs-row">
-            <div className="fs-track fs-right">
-              {[...FS_ROW_B, ...FS_ROW_B].map((item, i) => (
-                <div className="fs-card" key={i} style={{ background: item.grad }}>
-                  <div className="fs-card-overlay" />
-                  <div className="fs-card-body">
-                    <div className="fs-type">{item.type}</div>
-                    <div className="fs-title">{item.title}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
 
         <div className="hero-bottom">
