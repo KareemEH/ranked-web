@@ -137,6 +137,10 @@ export default function LandingPage() {
           <div className="match-glow" />
           <div className={cardLeftClass} onClick={() => pickWinner('left')}>
             <div className="card-bg" style={{ background: pair.left.cover?.grad ?? '#1a1a1a' }} />
+            {pair.left.cover?.img && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="card-poster" src={pair.left.cover.img} alt={pair.left.name} />
+            )}
             <div className="card-grad-overlay" />
             <div className="card-elo">{pair.left.elo}</div>
             <div className="card-title-label">{pair.left.name}</div>
@@ -145,6 +149,10 @@ export default function LandingPage() {
           <div className="vs-label">VS</div>
           <div className={cardRightClass} onClick={() => pickWinner('right')}>
             <div className="card-bg" style={{ background: pair.right.cover?.grad ?? '#1a1a1a' }} />
+            {pair.right.cover?.img && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="card-poster" src={pair.right.cover.img} alt={pair.right.name} />
+            )}
             <div className="card-grad-overlay" />
             <div className="card-elo">{pair.right.elo}</div>
             <div className="card-title-label">{pair.right.name}</div>
