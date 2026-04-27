@@ -69,7 +69,10 @@ export default function LandingPage() {
           <a className="nav-link" href="#taste">Taste Profile</a>
           <a className="nav-link" href="#community">Community</a>
         </div>
-        <a href="#" className="nav-cta">Start ranking →</a>
+        <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
+          <a href="#" className="nav-cta-ghost">Sign in</a>
+          <a href="#" className="nav-cta">Sign up</a>
+        </div>
       </nav>
 
       {/* HERO */}
@@ -107,11 +110,10 @@ export default function LandingPage() {
 
         <div className="hero-bottom">
           <p className="hero-sub">
-            Ranked builds your definitive list through thousands of tiny, honest choices.
-            Then Claude reads it back to you — and tells you something about yourself you didn&apos;t know.
+            Ranked builds your definitive list through thousands of head&#8209;to&#8209;head choices. Pick between two favourites, watch your rankings evolve, and uncover what your taste really says about you.
           </p>
           <div className="hero-buttons">
-            <a href="#" className="btn-primary">Build your first list →</a>
+            <a href="#" className="btn-primary">Get started</a>
           </div>
         </div>
 
@@ -120,8 +122,8 @@ export default function LandingPage() {
           <span className="cat-item">TV</span><span className="cat-dot">·</span>
           <span className="cat-item">Games</span><span className="cat-dot">·</span>
           <span className="cat-item">Books</span><span className="cat-dot">·</span>
-          <span className="cat-item">Albums</span><span className="cat-dot">·</span>
-          <span className="cat-item hl">Anything</span>
+          <span className="cat-item">Food</span><span className="cat-dot">·</span>
+          <span className="cat-item hl">Everything</span>
         </div>
       </section>
 
@@ -201,8 +203,37 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* TASTE PROFILE */}
+      <section id="taste" className="section section-light">
+        <p className="section-eyebrow fade-up">The payoff</p>
+        <h2 className="section-headline fade-up">Your taste, <span className="gold">explained.</span></h2>
+        <p className="section-sub fade-up">After enough head-to-head matches, Claude analyzes your rankings and writes something you couldn&apos;t quite articulate yourself.</p>
+        <div className="taste-card fade-up">
+          <div className="taste-top-meta">
+            <div className="taste-label">My Top Movies · Claude</div>
+            <button className="taste-share">Share card ↗</button>
+          </div>
+          <div className="taste-name">Alex&apos;s Movie Rankings</div>
+          <div className="taste-list">
+            {TASTE_TOP_5.map((item, i) => (
+              <div className="taste-item" key={i}>
+                <div className="taste-mini-cover" style={{ background: item.grad }} />
+                <span className="taste-rank">#{i + 1}</span>
+                <span className="taste-item-name">{item.title}</span>
+                <span className="taste-item-elo">{item.elo}</span>
+              </div>
+            ))}
+          </div>
+          <div className="taste-summary">
+            You gravitate toward <em>slow-burn psychological storytelling</em> over spectacle.
+            The titles that rise in your rankings share one quality: they trust silence.
+            That says something about <em>how you think</em>, not just what you watch.
+          </div>
+        </div>
+      </section>
+
       {/* SOCIAL SECTION */}
-      <section id="community" className="section section-light">
+      <section id="community" className="section">
         <p className="section-eyebrow fade-up">Your profile</p>
         <h2 className="section-headline fade-up">Share your taste. <span className="gold">Compare with friends.</span></h2>
         <p className="section-sub fade-up">Your rankings become a profile. Share lists, discover taste twins, and see how you stack up.</p>
@@ -265,35 +296,6 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TASTE PROFILE */}
-      <section id="taste" className="section">
-        <p className="section-eyebrow fade-up">The payoff</p>
-        <h2 className="section-headline fade-up">Your taste, <span className="gold">explained.</span></h2>
-        <p className="section-sub fade-up">After enough head-to-head matches, Claude analyzes your rankings and writes something you couldn&apos;t quite articulate yourself.</p>
-        <div className="taste-card fade-up">
-          <div className="taste-top-meta">
-            <div className="taste-label">My Top Movies · Claude</div>
-            <button className="taste-share">Share card ↗</button>
-          </div>
-          <div className="taste-name">Alex&apos;s Movie Rankings</div>
-          <div className="taste-list">
-            {TASTE_TOP_5.map((item, i) => (
-              <div className="taste-item" key={i}>
-                <div className="taste-mini-cover" style={{ background: item.grad }} />
-                <span className="taste-rank">#{i + 1}</span>
-                <span className="taste-item-name">{item.title}</span>
-                <span className="taste-item-elo">{item.elo}</span>
-              </div>
-            ))}
-          </div>
-          <div className="taste-summary">
-            You gravitate toward <em>slow-burn psychological storytelling</em> over spectacle.
-            The titles that rise in your rankings share one quality: they trust silence.
-            That says something about <em>how you think</em>, not just what you watch.
           </div>
         </div>
       </section>
