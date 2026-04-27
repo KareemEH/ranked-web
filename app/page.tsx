@@ -78,9 +78,9 @@ export default function LandingPage() {
           <p className="hero-eyebrow">· A head-to-head ranking engine ·</p>
           <h1 className="hero-headline">
             Every film.<br />
-            Every album.<br />
-            <span className="italic-gold">Every game</span>
-            you&apos;ve loved.
+            Every game.<br />
+            <span className="italic-gold">Every thing.</span><br />
+            Ranked.
           </h1>
         </div>
 
@@ -112,7 +112,6 @@ export default function LandingPage() {
           </p>
           <div className="hero-buttons">
             <a href="#" className="btn-primary">Build your first list →</a>
-            <a href="#taste" className="btn-secondary">See a sample profile</a>
           </div>
         </div>
 

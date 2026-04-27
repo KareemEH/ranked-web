@@ -82,7 +82,7 @@ nav {
 /* ── FILMSTRIP ── */
 .hero-content {
   position: relative; z-index: 3;
-  text-align: center; padding: 120px 20px 20px;
+  text-align: center; padding: 120px 20px 8px;
   max-width: 860px; flex-shrink: 0;
 }
 
@@ -125,7 +125,7 @@ nav {
 
 .hero-bottom {
   position: relative; z-index: 3;
-  text-align: center; padding: 20px 20px 44px;
+  text-align: center; padding: 8px 20px 44px;
   max-width: 600px; flex-shrink: 0;
 }
 .hero-eyebrow {
@@ -138,11 +138,10 @@ nav {
   font-size: min(8vw, 80px);
   font-weight: 400; line-height: 1.0;
   letter-spacing: -0.015em; color: var(--fg);
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 .hero-headline .italic-gold {
   color: var(--gold); font-style: italic; font-weight: 400;
-  display: block;
 }
 .hero-sub {
   font-size: 18px; font-weight: 300; line-height: 1.65;
@@ -603,25 +602,28 @@ footer {
   .nav-cta { padding: 8px 16px; font-size: 12px; }
 
   .hero-content {
-    padding: 96px 24px 12px;
+    padding: 60px 24px 12px;
+  }
+  .hero-eyebrow {
+    font-size: 9px; letter-spacing: 0.22em; margin-bottom: 12px;
   }
   .hero-headline {
-    font-size: clamp(36px, 11vw, 60px);
+    font-size: clamp(36px, 11.5vw, 52px);
   }
   .hero-bottom {
     padding: 12px 24px 48px;
   }
   .hero-sub {
-    font-size: 15px; margin-bottom: 22px;
+    font-size: 12px; line-height: 1.55; margin-bottom: 16px;
   }
   .hero-buttons {
-    flex-direction: column; align-items: stretch; gap: 10px;
+    flex-direction: column; align-items: center; gap: 10px;
   }
   .btn-primary, .btn-secondary {
-    text-align: center; padding: 14px 20px;
+    text-align: center; padding: 12px 32px;
   }
   .cat-strip {
-    gap: 8px; font-size: 9px;
+    display: none;
   }
 
   .section { padding: 72px 20px; }
