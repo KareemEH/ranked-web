@@ -13,6 +13,9 @@ export default function LandingPage() {
   const [picking, setPicking] = useState(false);
   const [winnerSide, setWinnerSide] = useState<'left' | 'right' | null>(null);
   const [loserSide, setLoserSide] = useState<'left' | 'right' | null>(null);
+  const [picksUsed, setPicksUsed] = useState(0);
+  const PICK_LIMIT = 5;
+  const gated = picksUsed >= PICK_LIMIT;
 
   useEffect(() => {
     const els = document.querySelectorAll('.fade-up');
@@ -28,20 +31,21 @@ export default function LandingPage() {
     return () => obs.disconnect();
   }, []);
 
-  const pair = PAIRS[matchIndex % PAIRS.length];
+  const pair = PAIRS[Math.min(matchIndex, PAIRS.length - 1)];
 
   const pickWinner = useCallback((side: 'left' | 'right') => {
-    if (picking) return;
+    if (picking || gated) return;
     setPicking(true);
     setWinnerSide(side);
     setLoserSide(side === 'left' ? 'right' : 'left');
     setTimeout(() => {
-      setMatchIndex(i => (i + 1) % PAIRS.length);
+      setMatchIndex(i => i + 1);
+      setPicksUsed(n => n + 1);
       setWinnerSide(null);
       setLoserSide(null);
       setPicking(false);
     }, 900);
-  }, [picking]);
+  }, [picking, gated]);
 
   const cardLeftClass = [
     'match-card card-left',
@@ -128,13 +132,24 @@ export default function LandingPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="section section-light">
+      <section id="how-it-works" className="section section-light" data-gated={gated}>
         <p className="section-eyebrow fade-up">How it works</p>
         <h2 className="section-headline fade-up">Two enter. <span className="gold">One wins.</span></h2>
         <p className="section-sub fade-up">Every match refines your rankings using ELO scoring. No overthinking — just gut instinct.</p>
-        <p className="match-counter fade-up">MATCH {matchIndex * 2 + 23} / 60</p>
+        <div className="picks-progress fade-up">
+          <div className="picks-progress-label">
+            <span>{pair.categoryIcon}</span>
+            <span className="picks-progress-category">{pair.category}</span>
+            <span className="picks-progress-dot">·</span>
+            <span className="picks-progress-category">{picksUsed} / {PICK_LIMIT}</span>
+            <span className="picks-progress-hint">picks</span>
+          </div>
+          <div className="picks-progress-track">
+            <div className="picks-progress-fill" style={{ width: `${(picksUsed / PICK_LIMIT) * 100}%` }} />
+          </div>
+        </div>
 
-        <div className="match-arena fade-up">
+        <div className="match-arena fade-up" data-gated={gated}>
           <div className="match-glow" />
           <div className={cardLeftClass} onClick={() => pickWinner('left')}>
             <div className="card-bg" style={{ background: pair.left.cover?.grad ?? '#1a1a1a' }} />
@@ -146,6 +161,15 @@ export default function LandingPage() {
             <div className="card-elo">{pair.left.elo}</div>
             <div className="card-title-label">{pair.left.name}</div>
             <div className="card-year-label">{pair.left.cover?.year}</div>
+          </div>
+          <div className="match-gate">
+            <p className="match-gate-eyebrow">Your taste profile is taking shape</p>
+            <h3 className="match-gate-headline">Keep ranking to see your results</h3>
+            <p className="match-gate-sub">Sign up to save your picks and unlock your full taste profile.</p>
+            <div className="match-gate-actions">
+              <a href="#" className="match-gate-cta">Sign up free</a>
+              <a href="#" className="match-gate-cta-ghost">Sign in</a>
+            </div>
           </div>
           <div className="vs-label">VS</div>
           <div className={cardRightClass} onClick={() => pickWinner('right')}>

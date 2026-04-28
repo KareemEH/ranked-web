@@ -78,11 +78,47 @@ export const MATCHES: MatchEntry[] = raw.map(([name, elo, type]) => ({
   cover: COVERS.find(c => c.title === name),
 }));
 
-export interface Pair { left: MatchEntry; right: MatchEntry }
-export const PAIRS: Pair[] = [];
-for (let i = 0; i < MATCHES.length - 1; i += 2) {
-  PAIRS.push({ left: MATCHES[i], right: MATCHES[i + 1] });
+export interface Pair {
+  left: MatchEntry;
+  right: MatchEntry;
+  category: string;
+  categoryIcon: string;
 }
+
+const m = (title: string): MatchEntry => ({
+  name: title,
+  elo: MATCHES.find(e => e.name === title)?.elo ?? 1300,
+  type: MATCHES.find(e => e.name === title)?.type ?? 'movie',
+  cover: COVERS.find(c => c.title === title),
+});
+
+export const PAIRS: Pair[] = [
+  {
+    category: 'Movies', categoryIcon: '🎬',
+    left:  m('Pulp Fiction'),
+    right: m('The Dark Knight'),
+  },
+  {
+    category: 'TV Shows', categoryIcon: '📺',
+    left:  m('Breaking Bad'),
+    right: m('The Sopranos'),
+  },
+  {
+    category: 'Games', categoryIcon: '🎮',
+    left:  m('Elden Ring'),
+    right: m('The Last of Us'),
+  },
+  {
+    category: 'Food', categoryIcon: '🍕',
+    left:  { name: 'Pizza',       elo: 1374, type: 'food', cover: { type:'food', title:'Pizza',       year:'', img:'', grad:'linear-gradient(160deg,#5a0a00,#9e1a00,#c83200)' } },
+    right: { name: 'Sushi',       elo: 1291, type: 'food', cover: { type:'food', title:'Sushi',       year:'', img:'', grad:'linear-gradient(160deg,#001428,#00244a,#003d6e)' } },
+  },
+  {
+    category: 'Books', categoryIcon: '📚',
+    left:  { name: '1984',        elo: 1348, type: 'book', cover: { type:'book', title:'1984',        year:'1949', img:'', grad:'linear-gradient(160deg,#080810,#101028,#181840)' } },
+    right: { name: 'Harry Potter',elo: 1316, type: 'book', cover: { type:'book', title:'Harry Potter',year:'1997', img:'', grad:'linear-gradient(160deg,#1a0838,#3d1078,#6020b8)' } },
+  },
+];
 
 export interface TrendingList {
   icon: string;
