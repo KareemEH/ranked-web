@@ -138,10 +138,10 @@ export const LISTS: TrendingList[] = [
   { icon:'🏆', color:'linear-gradient(135deg,#1a0808,#3d1010)', title:'Top 250 Action Films',       count:'250 films',  rankers:'14.8k', items:['Mad Max: Fury Road','The Raid','Die Hard'] },
 ];
 
-export const TASTE_TOP_5: { grad: string; title: string; elo: number }[] = [
-  { grad:'linear-gradient(160deg,#1a0f00,#3d2200,#7a4400)', title:'Elden Ring',        elo:1420 },
-  { grad:'linear-gradient(160deg,#0d0d0d,#1a1a2e,#2e3060)', title:'The Dark Knight',   elo:1412 },
-  { grad:'linear-gradient(160deg,#0a0a1a,#1a1a3e,#101050)', title:'Interstellar',      elo:1376 },
-  { grad:'linear-gradient(160deg,#181818,#2a2a2a,#3d3d3d)', title:'Parasite',          elo:1356 },
-  { grad:'linear-gradient(160deg,#1a2800,#3d5e00,#5a8800)', title:'Breaking Bad',      elo:1402 },
+export const TASTE_TOP_5: { grad: string; title: string; elo: number; img: string }[] = [
+  { grad:'linear-gradient(160deg,#0d0d0d,#1a1a2e,#2e3060)', title:'The Dark Knight',  elo:1412, img:'https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg' },
+  { grad:'linear-gradient(160deg,#0a1628,#1e3a5f,#2a5a8a)', title:'Inception',        elo:1398, img:'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg' },
+  { grad:'linear-gradient(160deg,#0a0a1a,#1a1a3e,#101050)', title:'Interstellar',     elo:1376, img:'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg' },
+  { grad:'linear-gradient(160deg,#181818,#2a2a2a,#3d3d3d)', title:'Parasite',         elo:1356, img:'https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png' },
+  { grad:'linear-gradient(160deg,#1a0a2e,#3d1f5e,#6b3fa0)', title:'Blade Runner 2049', elo:1290, img:'https://upload.wikimedia.org/wikipedia/en/9/9b/Blade_Runner_2049_poster.png' },
 ];

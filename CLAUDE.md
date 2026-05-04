@@ -58,3 +58,7 @@ TypeScript interfaces: `Cover`, `MatchEntry`, `Pair`, `TrendingList`. All data i
 ### Path aliases
 
 `@/*` resolves to the repo root (e.g. `import { COVERS } from '@/lib/data'`).
+
+## Copy rules
+
+- **Never use `--` (em dash or double hyphen) in any user-facing text.** Reword sentences to avoid it.

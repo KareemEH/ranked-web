@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useCallback, useState } from 'react';
-import { PAIRS, LISTS, TASTE_TOP_5 } from '@/lib/data';
+import { PAIRS, TASTE_TOP_5 } from '@/lib/data';
 
 const FS_ROW_A = [10, 24, 37, 52, 65, 78, 91, 104, 118];
 const FS_ROW_B = [130, 145, 158, 172, 186, 200, 213, 227, 240];
@@ -68,10 +68,9 @@ export default function LandingPage() {
           <span className="nav-logo-text">Ranked</span>
         </a>
         <div className="nav-links">
-          <a className="nav-link active" href="#how-it-works">How It Works</a>
-          <a className="nav-link" href="#trending">Trending Lists</a>
+          <a className="nav-link" href="#hero">Home</a>
+          <a className="nav-link" href="#how-it-works">How It Works</a>
           <a className="nav-link" href="#taste">Taste Profile</a>
-          <a className="nav-link" href="#community">Community</a>
         </div>
         <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
           <a href="#" className="nav-cta-ghost">Sign in</a>
@@ -187,7 +186,15 @@ export default function LandingPage() {
 
         <div className="elo-row fade-up">
           <span className="elo-score">{pair.left.elo}</span>
-          <span className="elo-tag">ELO</span>
+          <span className="elo-tag">
+            ELO
+            <span className="elo-info">
+              <span className="elo-info-icon">?</span>
+              <span className="elo-tooltip">
+                ELO is a scoring system originally invented for chess. Every time you pick a winner, the winner gains points and the loser drops. Your rankings get smarter with every choice.
+              </span>
+            </span>
+          </span>
           <span className="elo-score">{pair.right.elo}</span>
         </div>
 
@@ -198,138 +205,108 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* TRENDING LISTS */}
-      <section id="trending" className="section">
-        <p className="section-eyebrow fade-up">Community rankings</p>
-        <h2 className="section-headline fade-up">Trending <span className="gold">lists.</span></h2>
-        <p className="section-sub fade-up">Jump into a ranked list built by the community. Add your votes, see where you stand.</p>
-        <div className="trending-grid">
-          {LISTS.map((list, i) => (
-            <div className="list-card fade-up" key={i}>
-              <div className="list-card-header">
-                <div className="list-icon" style={{ background: list.color }}>{list.icon}</div>
-                <div className="list-card-info">
-                  <div className="list-card-title">{list.title}</div>
-                  <div className="list-card-meta">{list.count} · {list.rankers} ranked</div>
-                </div>
-              </div>
-              <div className="list-preview">
-                {list.items.map((item, j) => (
-                  <div className="list-preview-item" key={j}>
-                    <span className="list-preview-num">{j + 1}</span>
-                    <span className="list-preview-name">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="list-card-cta">Join the ranking →</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* TASTE PROFILE */}
-      <section id="taste" className="section section-light">
+      <section id="taste" className="section">
         <p className="section-eyebrow fade-up">The payoff</p>
         <h2 className="section-headline fade-up">Your taste, <span className="gold">explained.</span></h2>
-        <p className="section-sub fade-up">After enough head-to-head matches, Claude analyzes your rankings and writes something you couldn&apos;t quite articulate yourself.</p>
+        <p className="section-sub fade-up">After enough head-to-head matches, our algorithm automatically analyzes your picks and surfaces something you couldn&apos;t quite articulate yourself.</p>
         <div className="taste-card fade-up">
           <div className="taste-top-meta">
-            <div className="taste-label">My Top Movies · Claude</div>
-            <button className="taste-share">Share card ↗</button>
+            <div className="taste-label">My Top Movies · Ranked</div>
           </div>
-          <div className="taste-name">Alex&apos;s Movie Rankings</div>
-          <div className="taste-list">
-            {TASTE_TOP_5.map((item, i) => (
-              <div className="taste-item" key={i}>
-                <div className="taste-mini-cover" style={{ background: item.grad }} />
-                <span className="taste-rank">#{i + 1}</span>
-                <span className="taste-item-name">{item.title}</span>
-                <span className="taste-item-elo">{item.elo}</span>
-              </div>
-            ))}
-          </div>
-          <div className="taste-summary">
-            You gravitate toward <em>slow-burn psychological storytelling</em> over spectacle.
-            The titles that rise in your rankings share one quality: they trust silence.
-            That says something about <em>how you think</em>, not just what you watch.
-          </div>
-        </div>
-      </section>
-
-      {/* SOCIAL SECTION */}
-      <section id="community" className="section">
-        <p className="section-eyebrow fade-up">Your profile</p>
-        <h2 className="section-headline fade-up">Share your taste. <span className="gold">Compare with friends.</span></h2>
-        <p className="section-sub fade-up">Your rankings become a profile. Share lists, discover taste twins, and see how you stack up.</p>
-        <div className="social-layout fade-up">
-          <div className="social-profile-card">
-            <div className="profile-top">
-              <div className="profile-avatar">A</div>
-              <div className="profile-info">
-                <div className="profile-name">Alex M.</div>
-                <div className="profile-handle">@alexm · Ottawa</div>
-                <div className="profile-badge">Slow-burn thriller enthusiast</div>
-              </div>
-            </div>
-            <div className="profile-stats">
-              <div className="profile-stat"><span className="stat-num">847</span><span className="stat-lbl">ranked</span></div>
-              <div className="profile-stat"><span className="stat-num">12</span><span className="stat-lbl">lists</span></div>
-              <div className="profile-stat"><span className="stat-num">34</span><span className="stat-lbl">friends</span></div>
-              <div className="profile-stat"><span className="stat-num">4</span><span className="stat-lbl">taste twins</span></div>
-            </div>
-            <div className="profile-lists-label">Pinned lists</div>
-            <div className="profile-pinned">
-              <div className="pinned-list"><span className="pinned-icon">🎬</span><span>My Top 50 Movies</span><span className="pinned-count">50 items</span></div>
-              <div className="pinned-list"><span className="pinned-icon">🎮</span><span>Best Games Ever</span><span className="pinned-count">38 items</span></div>
-              <div className="pinned-list"><span className="pinned-icon">📺</span><span>TV I Can&apos;t Stop</span><span className="pinned-count">22 items</span></div>
-            </div>
-            <button className="profile-share-btn">Share my profile ↗</button>
-          </div>
-          <div className="social-right">
-            <div className="compare-card">
-              <div className="compare-header">
-                <span className="compare-title">Compare taste</span>
-                <span className="compare-badge">New</span>
-              </div>
-              <div className="compare-avatars">
-                <div className="compare-avatar you">A</div>
-                <div className="compare-vs">vs</div>
-                <div className="compare-avatar friend">J</div>
-              </div>
-              <div className="compare-result">
-                <div className="compare-bar-wrap">
-                  <div className="compare-bar-fill" style={{ width: '72%' }} />
+          <div className="taste-name">Alex&apos;s Taste Profile</div>
+          <div className="taste-podium">
+            {[1, 0, 2].map((dataIdx, displayIdx) => {
+              const item = TASTE_TOP_5[dataIdx];
+              const rank = [2, 1, 3][displayIdx];
+              const medal = ['silver', 'gold', 'bronze'][displayIdx];
+              return (
+                <div className={`podium-slot rank-${rank}`} key={rank}>
+                  <div className="podium-cover-wrap">
+                    <div className="podium-cover" style={{ background: item.grad }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={item.img} alt={item.title} />
+                    </div>
+                    <div className={`podium-medal ${medal}`}>{rank}</div>
+                  </div>
+                  <div className="podium-title">{item.title}</div>
+                  <div className="podium-elo">{item.elo}</div>
+                  <div className="podium-base" />
                 </div>
-                <div className="compare-score"><strong>72%</strong> taste overlap with Jamie</div>
-              </div>
-              <div className="compare-diff">You both love <em>psychological thrillers</em> but disagree on sci-fi.</div>
-              <button className="compare-btn">Find your taste twin →</button>
-            </div>
-            <div className="activity-feed">
-              <div className="activity-feed-label">Friends&apos; activity</div>
-              {[
-                { av:'J', body: <><strong>Jamie</strong> ranked <em>Elden Ring</em> #1 in Best Games Ever</>, time:'2h' },
-                { av:'S', body: <><strong>Sara</strong> created list <em>Top 50 Horror Films</em></>, time:'5h' },
-                { av:'M', body: <><strong>Marcus</strong> agreed with your #1 pick: <em>There Will Be Blood</em></>, time:'1d' },
-                { av:'L', body: <><strong>Lena</strong> challenged your ranking of <em>Inception</em></>, time:'2d' },
-              ].map((item, i) => (
-                <div className="activity-item" key={i}>
-                  <div className="activity-av">{item.av}</div>
-                  <div className="activity-body">{item.body}</div>
-                  <div className="activity-time">{item.time}</div>
+              );
+            })}
+          </div>
+          <div className="taste-also">
+            <span className="taste-also-label">also in your top 5</span>
+            <div className="taste-also-rows">
+              {TASTE_TOP_5.slice(3).map((item, i) => (
+                <div className="taste-also-row" key={i}>
+                  <div className="taste-also-thumb" style={{ background: item.grad }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={item.img} alt={item.title} />
+                  </div>
+                  <span className="taste-also-rank">#{i + 4}</span>
+                  <span className="taste-also-name">{item.title}</span>
+                  <span className="taste-also-elo">{item.elo}</span>
                 </div>
               ))}
             </div>
           </div>
+          <div className="taste-summary">
+            Three Nolan films in your top five. You reward directors who <em>trust complexity</em>.
+            Parasite and Blade Runner 2049 fill in the rest: meticulous craft, worlds that feel inevitable.
+            You want the idea to be <em>the spectacle</em>.
+          </div>
         </div>
       </section>
 
+
       {/* FOOTER */}
       <footer>
-        <div className="footer-cats">
-          <span>Movies</span>·<span>TV</span>·<span>Games</span>·<span>Books</span>·<span>Albums</span>
+        <div className="footer-top">
+          <div className="footer-brand">
+            <div className="footer-logo">
+              <div className="nav-logo-mark">R</div>
+              <span className="footer-logo-text">Ranked</span>
+            </div>
+            <p className="footer-tagline">Your taste, ranked.</p>
+            <span className="footer-version-badge">v0.1 BETA</span>
+          </div>
+
+          <div className="footer-col">
+            <div className="footer-col-title">Product</div>
+            <a href="#how-it-works" className="footer-link">How It Works</a>
+            <a href="#taste" className="footer-link">Taste Profile</a>
+            <a href="#" className="footer-link">Sign Up</a>
+            <a href="#" className="footer-link">Sign In</a>
+          </div>
+
+          <div className="footer-col">
+            <div className="footer-col-title">Explore</div>
+            <a href="#" className="footer-link">Movies</a>
+            <a href="#" className="footer-link">TV Shows</a>
+            <a href="#" className="footer-link">Games</a>
+            <a href="#" className="footer-link">Books</a>
+            <a href="#" className="footer-link">Albums</a>
+          </div>
+
+          <div className="footer-col">
+            <div className="footer-col-title">Legal</div>
+            <a href="#" className="footer-link">Privacy Policy</a>
+            <a href="#" className="footer-link">Terms of Use</a>
+            <a href="#" className="footer-link">Cookie Policy</a>
+          </div>
         </div>
-        <div className="footer-version">v0.1 BETA</div>
+
+        <div className="footer-bottom">
+          <span className="footer-copy">© 2026 Ranked. All rights reserved.</span>
+          <div className="footer-bottom-links">
+            <a href="#" className="footer-bottom-link">Privacy</a>
+            <a href="#" className="footer-bottom-link">Terms</a>
+            <a href="#" className="footer-bottom-link">Cookies</a>
+          </div>
+        </div>
       </footer>
     </>
   );
