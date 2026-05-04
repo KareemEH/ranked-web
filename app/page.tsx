@@ -64,13 +64,14 @@ export default function LandingPage() {
       {/* NAV */}
       <nav>
         <a href="#" className="nav-logo">
-          <div className="nav-logo-mark">R</div>
+          <img src="/logo.png" alt="Ranked" className="nav-logo-img" />
           <span className="nav-logo-text">Ranked</span>
         </a>
         <div className="nav-links">
           <a className="nav-link" href="#hero">Home</a>
           <a className="nav-link" href="#how-it-works">How It Works</a>
           <a className="nav-link" href="#taste">Taste Profile</a>
+          <a className="nav-link" href="#start-ranking">Start Ranking</a>
         </div>
         <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
           <a href="#" className="nav-cta-ghost">Sign in</a>
@@ -263,49 +264,41 @@ export default function LandingPage() {
 
 
       {/* FOOTER */}
-      <footer>
-        <div className="footer-top">
-          <div className="footer-brand">
-            <div className="footer-logo">
-              <div className="nav-logo-mark">R</div>
-              <span className="footer-logo-text">Ranked</span>
-            </div>
-            <p className="footer-tagline">Your taste, ranked.</p>
-            <span className="footer-version-badge">v0.1 BETA</span>
-          </div>
-
-          <div className="footer-col">
-            <div className="footer-col-title">Product</div>
-            <a href="#how-it-works" className="footer-link">How It Works</a>
-            <a href="#taste" className="footer-link">Taste Profile</a>
-            <a href="#" className="footer-link">Sign Up</a>
-            <a href="#" className="footer-link">Sign In</a>
-          </div>
-
-          <div className="footer-col">
-            <div className="footer-col-title">Explore</div>
-            <a href="#" className="footer-link">Movies</a>
-            <a href="#" className="footer-link">TV Shows</a>
-            <a href="#" className="footer-link">Games</a>
-            <a href="#" className="footer-link">Books</a>
-            <a href="#" className="footer-link">Albums</a>
-          </div>
-
-          <div className="footer-col">
-            <div className="footer-col-title">Legal</div>
-            <a href="#" className="footer-link">Privacy Policy</a>
-            <a href="#" className="footer-link">Terms of Use</a>
-            <a href="#" className="footer-link">Cookie Policy</a>
+      <footer id="start-ranking">
+        <div className="footer-cta">
+          <div className="footer-cta-bg-text" aria-hidden="true">RANKED</div>
+          <p className="footer-cta-eyebrow">Start ranking</p>
+          <h2 className="footer-cta-headline">What&apos;s your <span className="italic-gold">number one?</span></h2>
+          <a href="#" className="btn-primary">Get started free</a>
+          <div className="footer-cta-stats">
+            <span className="footer-cta-stat">Free to start</span>
+            <span className="footer-cta-stat">10,000+ titles</span>
+            <span className="footer-cta-stat">No ranking required</span>
+            <span className="footer-cta-stat">Your taste, explained</span>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <span className="footer-copy">© 2026 Ranked. All rights reserved.</span>
-          <div className="footer-bottom-links">
-            <a href="#" className="footer-bottom-link">Privacy</a>
-            <a href="#" className="footer-bottom-link">Terms</a>
-            <a href="#" className="footer-bottom-link">Cookies</a>
+        <div className="footer-bar">
+          <div className="footer-bar-left">
+            <div className="footer-logo">
+              <img src="/logo.png" alt="Ranked" className="nav-logo-img" />
+              <span className="nav-logo-text">Ranked</span>
+            </div>
+            <a href="#" className="footer-link">Privacy</a>
+            <a href="#" className="footer-link">Terms</a>
           </div>
+          <div className="footer-socials">
+            <a href="#" className="footer-social" aria-label="X">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" className="footer-social" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" className="footer-social" aria-label="TikTok">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.28 8.28 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg>
+            </a>
+          </div>
+          <span className="footer-copy">© 2026 Ranked</span>
         </div>
       </footer>
     </>
