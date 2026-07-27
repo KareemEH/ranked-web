@@ -138,6 +138,85 @@ export const LISTS: TrendingList[] = [
   { icon:'🏆', color:'linear-gradient(135deg,#1a0808,#3d1010)', title:'Top 250 Action Films',       count:'250 films',  rankers:'14.8k', items:['Mad Max: Fury Road','The Raid','Die Hard'] },
 ];
 
+export interface RankItem {
+  id: string;
+  name: string;
+  type: string;
+  elo: number;
+  year?: string;
+  img?: string;
+  grad: string;
+}
+
+export const RANK_ITEMS: RankItem[] = [
+  // Movies
+  { id:'movie-pulp-fiction',    name:'Pulp Fiction',         type:'movie', elo:1284, year:'1994', img:'https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_fiction.jpg',                       grad:'linear-gradient(160deg,#3d0000,#7a1a1a,#a02020)' },
+  { id:'movie-dark-knight',     name:'The Dark Knight',      type:'movie', elo:1412, year:'2008', img:'https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg',    grad:'linear-gradient(160deg,#0d0d0d,#1a1a2e,#2e3060)' },
+  { id:'movie-parasite',        name:'Parasite',             type:'movie', elo:1356, year:'2019', img:'https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png',           grad:'linear-gradient(160deg,#181818,#2a2a2a,#3d3d3d)' },
+  { id:'movie-inception',       name:'Inception',            type:'movie', elo:1398, year:'2010', img:'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg', grad:'linear-gradient(160deg,#0a1628,#1e3a5f,#2a5a8a)' },
+  { id:'movie-interstellar',    name:'Interstellar',         type:'movie', elo:1376, year:'2014', img:'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg',           grad:'linear-gradient(160deg,#0a0a1a,#1a1a3e,#101050)' },
+  { id:'movie-dune',            name:'Dune',                 type:'movie', elo:1320, year:'2021', img:'https://upload.wikimedia.org/wikipedia/en/8/8e/Dune_%282021_film%29.jpg',               grad:'linear-gradient(160deg,#2a1800,#5e3800,#8a5500)' },
+  { id:'movie-no-country',      name:'No Country for Old Men', type:'movie', elo:1344, year:'2007', img:'https://upload.wikimedia.org/wikipedia/en/3/3b/No_Country_for_Old_Men_poster.jpg',  grad:'linear-gradient(160deg,#1a0f00,#3d2800,#6a4a10)' },
+  { id:'movie-godfather',       name:'The Godfather',        type:'movie', elo:1420, year:'1972', img:'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg',                     grad:'linear-gradient(160deg,#1a0800,#3d1800,#602800)' },
+  { id:'movie-moonlight',       name:'Moonlight',            type:'movie', elo:1130, year:'2016', img:'https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Moonlight_%282016_film%29.png/220px-Moonlight_%282016_film%29.png', grad:'linear-gradient(160deg,#1a0a3e,#3d1f7a,#5a30a0)' },
+  { id:'movie-blade-runner',    name:'Blade Runner 2049',    type:'movie', elo:1290, year:'2017', img:'https://upload.wikimedia.org/wikipedia/en/9/9b/Blade_Runner_2049_poster.png',           grad:'linear-gradient(160deg,#1a0a2e,#3d1f5e,#6b3fa0)' },
+  { id:'movie-twbb',            name:'There Will Be Blood',  type:'movie', elo:1310, year:'2007', img:'https://upload.wikimedia.org/wikipedia/en/b/b8/There_will_be_blood_ver2.jpg',           grad:'linear-gradient(160deg,#2a1000,#6a2800,#8a3800)' },
+  { id:'movie-mulholland',      name:'Mulholland Drive',     type:'movie', elo:1295, year:'2001', img:'https://upload.wikimedia.org/wikipedia/en/d/d1/Mulholland_Drive_poster.jpg',            grad:'linear-gradient(160deg,#0a001a,#200050,#3d0080)' },
+  // TV
+  { id:'tv-breaking-bad',       name:'Breaking Bad',         type:'tv', elo:1402, year:'2008', img:'https://upload.wikimedia.org/wikipedia/en/9/9c/Breaking_Bad_Season_1_Promotional_Poster.jpg', grad:'linear-gradient(160deg,#1a2800,#3d5e00,#5a8800)' },
+  { id:'tv-succession',         name:'Succession',           type:'tv', elo:1330, year:'2018', img:'https://upload.wikimedia.org/wikipedia/en/a/a0/Succession_season_4_promo_image.png',    grad:'linear-gradient(160deg,#141414,#2a2a2a,#3a3a3a)' },
+  { id:'tv-chernobyl',          name:'Chernobyl',            type:'tv', elo:1360, year:'2019', img:'https://upload.wikimedia.org/wikipedia/en/b/b3/Chernobyl_Title_Card.jpg',               grad:'linear-gradient(160deg,#1a1a0a,#2d2d1a,#404030)' },
+  { id:'tv-true-detective',     name:'True Detective',       type:'tv', elo:1318, year:'2014', img:'https://upload.wikimedia.org/wikipedia/en/5/fifty/True_Detective_Season_1.jpg',         grad:'linear-gradient(160deg,#0a0a0a,#1a1a14,#2a2818)' },
+  { id:'tv-sopranos',           name:'The Sopranos',         type:'tv', elo:1420, year:'1999', img:'https://upload.wikimedia.org/wikipedia/en/2/26/The_Sopranos.jpg',                       grad:'linear-gradient(160deg,#1a0808,#350f0f,#500808)' },
+  { id:'tv-wire',               name:'The Wire',             type:'tv', elo:1395, year:'2002', img:'https://upload.wikimedia.org/wikipedia/en/e/ed/The_Wire_Season_1_DVD.jpg',              grad:'linear-gradient(160deg,#0a0f00,#1a2800,#2a3a00)' },
+  { id:'tv-severance',          name:'Severance',            type:'tv', elo:1318, year:'2022', img:'https://upload.wikimedia.org/wikipedia/en/e/e7/Severance_Apple_TV.jpg',                 grad:'linear-gradient(160deg,#0a1a14,#1a3828,#205040)' },
+  { id:'tv-the-bear',           name:'The Bear',             type:'tv', elo:1305, year:'2022', img:'https://upload.wikimedia.org/wikipedia/en/3/36/The_Bear_TV_series.jpg',                 grad:'linear-gradient(160deg,#1a0a00,#3a1800,#602800)' },
+  // Games
+  { id:'game-elden-ring',       name:'Elden Ring',           type:'game', elo:1420, year:'2022', img:'https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg',                 grad:'linear-gradient(160deg,#1a0f00,#3d2200,#7a4400)' },
+  { id:'game-tlou',             name:'The Last of Us',       type:'game', elo:1380, year:'2013', img:'https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg', grad:'linear-gradient(160deg,#0d1a0a,#1e3d14,#305a20)' },
+  { id:'game-god-of-war',       name:'God of War',           type:'game', elo:1370, year:'2018', img:'https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg',                 grad:'linear-gradient(160deg,#1a0000,#4a0808,#7a1010)' },
+  { id:'game-hades',            name:'Hades',                type:'game', elo:1295, year:'2020', img:'https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg',                    grad:'linear-gradient(160deg,#2a0a1a,#5e1a3e,#8a2060)' },
+  { id:'game-cyberpunk',        name:'Cyberpunk 2077',       type:'game', elo:1280, year:'2020', img:'https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg',             grad:'linear-gradient(160deg,#020d1a,#0a243a,#0a3a5e)' },
+  { id:'game-hollow-knight',    name:'Hollow Knight',        type:'game', elo:1340, year:'2017', img:'https://upload.wikimedia.org/wikipedia/en/7/70/Hollow_Knight_artwork.webp',            grad:'linear-gradient(160deg,#08080a,#141428,#1e1e40)' },
+  { id:'game-rdr2',             name:'Red Dead Redemption 2', type:'game', elo:1365, year:'2018', img:'https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg',           grad:'linear-gradient(160deg,#1a0808,#3d1010,#6a1818)' },
+  { id:'game-disco-elysium',    name:'Disco Elysium',        type:'game', elo:1310, year:'2019', img:'https://upload.wikimedia.org/wikipedia/en/8/8c/Disco_Elysium_cover_art.jpg',            grad:'linear-gradient(160deg,#0a0a20,#1a1a50,#2a2a80)' },
+  { id:'game-totk',             name:'Zelda: Tears of the Kingdom', type:'game', elo:1350, year:'2023', img:'https://upload.wikimedia.org/wikipedia/en/2/22/The_Legend_of_Zelda_Tears_of_the_Kingdom_cover.jpg', grad:'linear-gradient(160deg,#001a10,#004428,#006040)' },
+  { id:'game-ghost-tsushima',   name:'Ghost of Tsushima',    type:'game', elo:1288, year:'2020', img:'https://upload.wikimedia.org/wikipedia/en/b/b2/Ghost_of_Tsushima_cover_art.jpg',        grad:'linear-gradient(160deg,#1a0a00,#4a2200,#d44000)' },
+  // Books
+  { id:'book-1984',             name:'1984',                 type:'book', elo:1380, year:'1949', grad:'linear-gradient(160deg,#080810,#101028,#181840)' },
+  { id:'book-harry-potter',     name:'Harry Potter',         type:'book', elo:1316, year:'1997', grad:'linear-gradient(160deg,#1a0838,#3d1078,#6020b8)' },
+  { id:'book-dune',             name:'Dune',                 type:'book', elo:1358, year:'1965', grad:'linear-gradient(160deg,#2a1800,#5e3800,#8a5500)' },
+  { id:'book-lotr',             name:'Lord of the Rings',    type:'book', elo:1410, year:'1954', grad:'linear-gradient(160deg,#001a10,#004428,#006040)' },
+  { id:'book-alchemist',        name:'The Alchemist',        type:'book', elo:1290, year:'1988', grad:'linear-gradient(160deg,#3d1800,#7a3000,#a84000)' },
+  { id:'book-hitchhiker',       name:"Hitchhiker's Guide",   type:'book', elo:1310, year:'1979', grad:'linear-gradient(160deg,#001428,#00244a,#003d6e)' },
+  { id:'book-gatsby',           name:'The Great Gatsby',     type:'book', elo:1270, year:'1925', grad:'linear-gradient(160deg,#1a1000,#3d2800,#6a4800)' },
+  { id:'book-crime-punishment', name:'Crime and Punishment', type:'book', elo:1340, year:'1866', grad:'linear-gradient(160deg,#1a0000,#3d0808,#601010)' },
+  { id:'book-catcher',          name:'Catcher in the Rye',   type:'book', elo:1260, year:'1951', grad:'linear-gradient(160deg,#1a1400,#3d3000,#604800)' },
+  { id:'book-100-years',        name:'100 Years of Solitude', type:'book', elo:1370, year:'1967', grad:'linear-gradient(160deg,#1a0a00,#3d1800,#6a3000)' },
+  // Food
+  { id:'food-pizza',            name:'Pizza',                type:'food', elo:1374, grad:'linear-gradient(160deg,#5a0a00,#9e1a00,#c83200)' },
+  { id:'food-sushi',            name:'Sushi',                type:'food', elo:1291, grad:'linear-gradient(160deg,#001428,#00244a,#003d6e)' },
+  { id:'food-ramen',            name:'Ramen',                type:'food', elo:1340, grad:'linear-gradient(160deg,#3d1800,#7a3000,#a84200)' },
+  { id:'food-tacos',            name:'Tacos',                type:'food', elo:1360, grad:'linear-gradient(160deg,#2a1a00,#5e3800,#8a5500)' },
+  { id:'food-burgers',          name:'Burgers',              type:'food', elo:1380, grad:'linear-gradient(160deg,#2a0a00,#5e1800,#8a2800)' },
+  { id:'food-pasta',            name:'Pasta',                type:'food', elo:1320, grad:'linear-gradient(160deg,#2a1800,#5e3800,#8a5820)' },
+  { id:'food-steak',            name:'Steak',                type:'food', elo:1350, grad:'linear-gradient(160deg,#2a0800,#5e1800,#8a2800)' },
+  { id:'food-curry',            name:'Curry',                type:'food', elo:1310, grad:'linear-gradient(160deg,#2a1000,#6a2800,#9e4200)' },
+  { id:'food-fried-chicken',    name:'Fried Chicken',        type:'food', elo:1365, grad:'linear-gradient(160deg,#3d2000,#7a4000,#a86000)' },
+  { id:'food-dim-sum',          name:'Dim Sum',              type:'food', elo:1300, grad:'linear-gradient(160deg,#3d0808,#7a1010,#a81818)' },
+  // Music
+  { id:'music-ok-computer',     name:'OK Computer',          type:'music', elo:1390, year:'1997', grad:'linear-gradient(160deg,#0a1a28,#1a3848,#204858)' },
+  { id:'music-dark-side',       name:'Dark Side of the Moon', type:'music', elo:1420, year:'1973', grad:'linear-gradient(160deg,#080810,#101028,#080840)' },
+  { id:'music-thriller',        name:'Thriller',             type:'music', elo:1380, year:'1982', grad:'linear-gradient(160deg,#1a0808,#3d1010,#601818)' },
+  { id:'music-abbey-road',      name:'Abbey Road',           type:'music', elo:1400, year:'1969', grad:'linear-gradient(160deg,#0a1010,#1a2828,#204040)' },
+  { id:'music-kind-of-blue',    name:'Kind of Blue',         type:'music', elo:1370, year:'1959', grad:'linear-gradient(160deg,#001428,#002848,#003d6e)' },
+  { id:'music-purple-rain',     name:'Purple Rain',          type:'music', elo:1340, year:'1984', grad:'linear-gradient(160deg,#1a0038,#3d0870,#5a10a0)' },
+  { id:'music-nevermind',       name:'Nevermind',            type:'music', elo:1360, year:'1991', grad:'linear-gradient(160deg,#001428,#002040,#003060)' },
+  { id:'music-channel-orange',  name:'Channel Orange',       type:'music', elo:1330, year:'2012', grad:'linear-gradient(160deg,#3d1800,#7a3000,#c86000)' },
+  { id:'music-to-pimp',         name:'To Pimp a Butterfly',  type:'music', elo:1395, year:'2015', grad:'linear-gradient(160deg,#0a1a00,#1a3800,#2a5000)' },
+  { id:'music-blonde',          name:'Blonde',               type:'music', elo:1375, year:'2016', grad:'linear-gradient(160deg,#1a1000,#3a2400,#5a3800)' },
+];
+
 export const TASTE_TOP_5: { grad: string; title: string; elo: number; img: string }[] = [
   { grad:'linear-gradient(160deg,#0d0d0d,#1a1a2e,#2e3060)', title:'The Dark Knight',  elo:1412, img:'https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg' },
   { grad:'linear-gradient(160deg,#0a1628,#1e3a5f,#2a5a8a)', title:'Inception',        elo:1398, img:'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg' },

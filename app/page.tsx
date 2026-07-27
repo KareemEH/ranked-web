@@ -74,8 +74,8 @@ export default function LandingPage() {
           <a className="nav-link" href="#start-ranking">Start Ranking</a>
         </div>
         <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
-          <a href="#" className="nav-cta-ghost">Sign in</a>
-          <a href="#" className="nav-cta">Sign up</a>
+          <a href="/signin" className="nav-cta-ghost">Sign in</a>
+          <a href="/signup" className="nav-cta">Sign up</a>
         </div>
       </nav>
 
@@ -117,7 +117,8 @@ export default function LandingPage() {
             Ranked builds your definitive list through thousands of head&#8209;to&#8209;head choices. Pick between two favourites, watch your rankings evolve, and uncover what your taste really says about you.
           </p>
           <div className="hero-buttons">
-            <a href="#" className="btn-primary">Get started</a>
+            <a href="/signup" className="btn-primary">Get started</a>
+            <a href="/rank" className="btn-secondary">Start ranking</a>
           </div>
         </div>
 
@@ -167,8 +168,8 @@ export default function LandingPage() {
             <h3 className="match-gate-headline">Keep ranking to see your results</h3>
             <p className="match-gate-sub">Sign up to save your picks and unlock your full taste profile.</p>
             <div className="match-gate-actions">
-              <a href="#" className="match-gate-cta">Sign up free</a>
-              <a href="#" className="match-gate-cta-ghost">Sign in</a>
+              <a href="/signup" className="match-gate-cta">Sign up free</a>
+              <a href="/signin" className="match-gate-cta-ghost">Sign in</a>
             </div>
           </div>
           <div className="vs-label">VS</div>
@@ -266,16 +267,17 @@ export default function LandingPage() {
       {/* FOOTER */}
       <footer id="start-ranking">
         <div className="footer-cta">
-          <div className="footer-cta-bg-text" aria-hidden="true">RANKED</div>
-          <p className="footer-cta-eyebrow">Start ranking</p>
-          <h2 className="footer-cta-headline">What&apos;s your <span className="italic-gold">number one?</span></h2>
-          <a href="#" className="btn-primary">Get started free</a>
-          <div className="footer-cta-stats">
-            <span className="footer-cta-stat">Free to start</span>
-            <span className="footer-cta-stat">10,000+ titles</span>
-            <span className="footer-cta-stat">No ranking required</span>
-            <span className="footer-cta-stat">Your taste, explained</span>
+          <div className="footer-cta-wordcloud" aria-hidden="true">
+            <div className="wc-row"><span className="wc-sm">Sneakers</span><span className="wc-xs">Episodes</span><span className="wc-sm">Genres</span><span className="wc-xs">Venues</span><span className="wc-sm">Films</span><span className="wc-xs">Songs</span><span className="wc-sm">Destinations</span><span className="wc-xs">Scores</span></div>
+            <div className="wc-row"><span className="wc-md">Recipes</span><span className="wc-sm">Directors</span><span className="wc-md">Bands</span><span className="wc-sm">Athletes</span><span className="wc-md">Playlists</span><span className="wc-sm">Actors</span><span className="wc-md">Chefs</span><span className="wc-sm">Podcasts</span><span className="wc-md">Series</span></div>
+            <div className="wc-row"><span className="wc-lg wc-amber">Albums</span><span className="wc-md">Sports</span><span className="wc-lg">Restaurants</span><span className="wc-lg wc-amber">Anime</span><span className="wc-md">Artists</span><span className="wc-lg wc-amber">Music</span><span className="wc-md">Cocktails</span></div>
+            <div className="wc-row"><span className="wc-xl wc-gold">Movies</span><span className="wc-lg wc-gold">TV Shows</span><span className="wc-xl wc-gold">Games</span><span className="wc-lg wc-gold">Food</span><span className="wc-xl wc-gold">Books</span></div>
+            <div className="wc-row"><span className="wc-lg">Restaurants</span><span className="wc-md wc-amber">Sports</span><span className="wc-lg wc-amber">Anime</span><span className="wc-md">Rankings</span><span className="wc-lg wc-amber">Albums</span><span className="wc-md">Franchises</span></div>
+            <div className="wc-row"><span className="wc-md">Collections</span><span className="wc-sm">Shows</span><span className="wc-md">Tracks</span><span className="wc-sm">Titles</span><span className="wc-md">Courses</span><span className="wc-sm">Seasons</span><span className="wc-md">Characters</span><span className="wc-sm">Reviews</span></div>
           </div>
+          <div className="footer-cta-center-fade" aria-hidden="true" />
+          <h2 className="footer-cta-headline">What&apos;s your <span className="italic-gold">number one?</span></h2>
+          <a href="/signup" className="btn-primary">Get started</a>
         </div>
 
         <div className="footer-bar">
